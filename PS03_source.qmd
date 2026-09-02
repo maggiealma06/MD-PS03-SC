@@ -289,7 +289,10 @@ Add a column to the `dallas_sub` data set called `prct_sold` that calculates the
 ::: {.callout-important icon="false" collapse="false" title="Problem 5 Answers"}
 ```{r}
 # Type your code and comments inside the code chunk
+dallas_sub <- dallas_sub |>
+  mutate(prct_sold = (sales/listings * 100))
 
+tail(dallas_sub)
 ```
 :::
 
@@ -300,7 +303,12 @@ Calculate the **average** percentage of listings that were sold in Dallas **in e
 ::: {.callout-important icon="false" collapse="false" title="Problem 6 Answers"}
 ```{r}
 # Type your code and comments inside the code chunk
+dallas_summary <- dallas_sub |>
+  group_by(month) |>
+  summarize(mean_prct_sold = (mean(sales/listings * 100)))
 
+
+dallas_summary
 ```
 :::
 
@@ -311,7 +319,8 @@ Arrange the `dallas_summary` in `desc`ending order based on the average percenta
 ::: {.callout-important icon="false" collapse="false" title="Problem 7 Answers"}
 ```{r}
 # Type your code and comments inside the code chunk
-
+dallas_summary |>
+  arrange(desc(mean_prct_sold)) 
 ```
 :::
 
@@ -330,11 +339,11 @@ txhousing |>
   mutate(prct_sold = sales/listings *100) |>
   group_by(month) |>
   summarize(mean_prct_sold = mean(prct_sold)) |> 
-  arrange(desc(mean_prct_sold)) |> 
+  arrange(desc(mean_prct_sold)) |>
   kable()
 ```
 
--   Delete this and put your text answer here.
+-   The mean percentage of listings sold between 2012-2013 in Dallas, grouped by month, arranged in descending order.
 :::
 
 ::: {.callout-note icon="false" title="Problem 9"}
@@ -344,10 +353,13 @@ In January of 2015, what city had the fewest houses listed for sale? Report the 
 ::: {.callout-important icon="false" collapse="false" title="Problem 9 Answers"}
 ```{r}
 # Type your code and comments inside the code chunk
+txhousing |>
+  group_by(city) |>
+  arrange(listings)
 
 ```
 
--   Delete this and put your text answer here.
+-   Midland had the fewest houses listed for sale at 0 listings.
 :::
 
 ::: {.callout-note icon="false" title="Problem 10"}
@@ -357,7 +369,11 @@ In 2012, in which month were the most houses sold in Texas? Report the month wer
 ::: {.callout-important icon="false" collapse="false" title="Problem 10 Answers"}
 ```{r}
 # Type your code and comments inside the code chunk
-
+txhousing |>
+  filter(year == 2012) |>
+  group_by(month) |>
+  summarize(total_sales = sum(sales)) |>
+  arrange(desc(total_sales))
 ```
 
 -   Delete this and put your text answer here.
@@ -370,7 +386,9 @@ Generate a **single** table that shows the total number of houses sold in **Aust
 ::: {.callout-important icon="false" collapse="false" title="Problem 11 Answers"}
 ```{r}
 # Type your code and comments inside the code chunk
-
+#Austin_Dallas <- txhousing |>
+  #filter((city == "Austin" | city == "Dallas"), (year == 2000 | year == 2001)) |>
+  
 ```
 :::
 

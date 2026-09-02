@@ -135,7 +135,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified on September 02, 2026 11:43:40 Eastern Daylight Time</p>
+      <p class="date">Last modified on September 02, 2026 12:44:53 Eastern Daylight Time</p>
     </div>
   </div>
   
@@ -894,7 +894,22 @@ Note
 <div id="callout-22" class="callout-22-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Type your code and comments inside the code chunk</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Type your code and comments inside the code chunk</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>dallas_sub <span class="ot">&lt;-</span> dallas_sub <span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prct_sold =</span> (sales<span class="sc">/</span>listings <span class="sc">*</span> <span class="dv">100</span>))</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(dallas_sub)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+  city    year month sales     volume median listings vol_100k prct_sold
+  &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 Dallas  2013     7  6322 1598961793 199200    13685   15990.      46.2
+2 Dallas  2013     8  6209 1570480866 198000    13694   15705.      45.3
+3 Dallas  2013     9  4941 1181585876 188800    13145   11816.      37.6
+4 Dallas  2013    10  4593 1105924279 189200    12728   11059.      36.1
+5 Dallas  2013    11  3964  968261356 186600    11895    9683.      33.3
+6 Dallas  2013    12  4212 1071755610 194900    10531   10718.      40.0</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -925,7 +940,30 @@ Note
 <div id="callout-24" class="callout-24-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Type your code and comments inside the code chunk</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Type your code and comments inside the code chunk</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>dallas_summary <span class="ot">&lt;-</span> dallas_sub <span class="sc">|&gt;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(month) <span class="sc">|&gt;</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_prct_sold =</span> (<span class="fu">mean</span>(sales<span class="sc">/</span>listings <span class="sc">*</span> <span class="dv">100</span>)))</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>dallas_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 2
+   month mean_prct_sold
+   &lt;int&gt;          &lt;dbl&gt;
+ 1     1           20.5
+ 2     2           23.5
+ 3     3           32.2
+ 4     4           34.5
+ 5     5           38.2
+ 6     6           37.2
+ 7     7           37.1
+ 8     8           38.5
+ 9     9           31.8
+10    10           32.1
+11    11           30.6
+12    12           35.5</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -956,7 +994,26 @@ Note
 <div id="callout-26" class="callout-26-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Type your code and comments inside the code chunk</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Type your code and comments inside the code chunk</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>dallas_summary <span class="sc">|&gt;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_prct_sold)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 2
+   month mean_prct_sold
+   &lt;int&gt;          &lt;dbl&gt;
+ 1     8           38.5
+ 2     5           38.2
+ 3     6           37.2
+ 4     7           37.1
+ 5    12           35.5
+ 6     4           34.5
+ 7     3           32.2
+ 8    10           32.1
+ 9     9           31.8
+10    11           30.6
+11     2           23.5
+12     1           20.5</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -991,13 +1048,13 @@ Note
 <div id="callout-28" class="callout-28-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>txhousing <span class="sc">|&gt;</span> </span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2012</span> <span class="sc">|</span> year <span class="sc">==</span> <span class="dv">2013</span>, city <span class="sc">==</span> <span class="st">"Dallas"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prct_sold =</span> sales<span class="sc">/</span>listings <span class="sc">*</span><span class="dv">100</span>) <span class="sc">|&gt;</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(month) <span class="sc">|&gt;</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_prct_sold =</span> <span class="fu">mean</span>(prct_sold)) <span class="sc">|&gt;</span> </span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_prct_sold)) <span class="sc">|&gt;</span> </span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>txhousing <span class="sc">|&gt;</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2012</span> <span class="sc">|</span> year <span class="sc">==</span> <span class="dv">2013</span>, city <span class="sc">==</span> <span class="st">"Dallas"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prct_sold =</span> sales<span class="sc">/</span>listings <span class="sc">*</span><span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(month) <span class="sc">|&gt;</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_prct_sold =</span> <span class="fu">mean</span>(prct_sold)) <span class="sc">|&gt;</span> </span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_prct_sold)) <span class="sc">|&gt;</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -1060,7 +1117,7 @@ Note
 </div>
 </div>
 <ul>
-<li>Delete this and put your text answer here.</li>
+<li>The mean percentage of listings sold between 2012-2013 in Dallas, grouped by month, arranged in descending order.</li>
 </ul>
 </div>
 </div>
@@ -1091,10 +1148,30 @@ Note
 <div id="callout-30" class="callout-30-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Type your code and comments inside the code chunk</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Type your code and comments inside the code chunk</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>txhousing <span class="sc">|&gt;</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(city) <span class="sc">|&gt;</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(listings)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8,602 × 8
+# Groups:   city [46]
+   city         year month sales   volume median listings vol_100k
+   &lt;chr&gt;       &lt;int&gt; &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+ 1 Midland      2010     2   100 19880017 175400        0    199. 
+ 2 San Marcos   2013     8    33  7257402 170000       35     72.6
+ 3 Nacogdoches  2003     5    31  3305000  98300       54     33.0
+ 4 Nacogdoches  2003     3    19  2270000  95000       61     22.7
+ 5 Nacogdoches  2003     4    28  2700000  90000       62     27  
+ 6 Nacogdoches  2002     1    21  1985000  65000       66     19.8
+ 7 San Marcos   2014    12    29  5702169 187500       79     57.0
+ 8 San Marcos   2014     9    22  4246700 174300       82     42.5
+ 9 San Marcos   2015     2    19  3984850 170000       83     39.8
+10 San Marcos   2015     1    18  3376703 150000       85     33.8
+# ℹ 8,592 more rows</code></pre>
+</div>
 </div>
 <ul>
-<li>Delete this and put your text answer here.</li>
+<li>Midland had the fewest houses listed for sale at 0 listings.</li>
 </ul>
 </div>
 </div>
@@ -1125,7 +1202,29 @@ Note
 <div id="callout-32" class="callout-32-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Type your code and comments inside the code chunk</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Type your code and comments inside the code chunk</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>txhousing <span class="sc">|&gt;</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2012</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(month) <span class="sc">|&gt;</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_sales =</span> <span class="fu">sum</span>(sales)) <span class="sc">|&gt;</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_sales))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 2
+   month total_sales
+   &lt;int&gt;       &lt;dbl&gt;
+ 1     8       29995
+ 2     6       29574
+ 3     5       28348
+ 4     7       28269
+ 5    10       24259
+ 6     4       23954
+ 7     9       23256
+ 8     3       22934
+ 9    12       22457
+10    11       22018
+11     2       17689
+12     1       14299</code></pre>
+</div>
 </div>
 <ul>
 <li>Delete this and put your text answer here.</li>
@@ -1159,7 +1258,9 @@ Note
 <div id="callout-34" class="callout-34-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Type your code and comments inside the code chunk</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Type your code and comments inside the code chunk</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Austin_Dallas &lt;- txhousing |&gt;</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#filter((city == "Austin" | city == "Dallas"), (year == 2000 | year == 2001)) |&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1209,7 +1310,7 @@ Tip
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.6.1 (2026-06-24)
 Platform: x86_64-redhat-linux-gnu
