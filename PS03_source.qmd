@@ -386,8 +386,15 @@ Generate a **single** table that shows the total number of houses sold in **Aust
 ::: {.callout-important icon="false" collapse="false" title="Problem 11 Answers"}
 ```{r}
 # Type your code and comments inside the code chunk
-#Austin_Dallas <- txhousing |>
-  #filter((city == "Austin" | city == "Dallas"), (year == 2000 | year == 2001)) |>
+Austin_Dallas <- txhousing |>
+  filter((city == "Austin" | city == "Dallas") & (year == 2000 | year == 2001)) |> 
+  group_by(city) |>
+  summarize(total_houses_sold_00_01 = sum(sales))
+
+Austin_Dallas
+
+
+
   
 ```
 :::
