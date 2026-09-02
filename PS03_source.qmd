@@ -59,10 +59,11 @@ Examine `txhousing` in the data viewer. You can accomplish this two different wa
 ::: {.callout-important icon="false" collapse="false" title="Problem 1 Answers"}
 ```{r}
 # Type your code and comments inside the code chunk
-
+glimpse(txhousing) |>
+  tail()
 ```
 
--   Delete this and put your text answer here.
+-   Wichita Falls is the last city listed in the data set.
 :::
 
 ::: {.callout-note icon="false" title="Problem 2"}
@@ -70,7 +71,7 @@ Examine the variable descriptions by typing `?txhousing` in the **console**. Wha
 :::
 
 ::: {.callout-important icon="false" collapse="false" title="Problem 2 Answers"}
--   Delete this and put your text answer here.
+-   The listing variable in this data set is 'Total Active Listings.'
 :::
 
 # Data Wrangling Review
@@ -241,22 +242,30 @@ Write a code chunk to remove the inventory variable. Save the results in a data 
 ::: {.callout-important icon="false" collapse="false" title="Problem 3 Answers"}
 ```{r}
 # Type your code and comments inside the code chunk
-
+txhousing <- txhousing |>
+  select(-"inventory")
+head(txhousing)
 ```
 :::
 
 ::: {.callout-note icon="false" title="Problem 4"}
 Make a data set called `dallas_sub` that includes data only from the city of Dallas in 2012 and 2013. Verify that the dimensions of `dallas_sub` are 24 by 8.  Show the first six rows of `dallas_sub`.  Explain why the following code does not give the requested answer:
 ```{r, eval = FALSE}
-txhousing |> 
-  filter(city =="Dallas" & year == 2012 | year == 2013) |> dim()
+ dallas_sub1 <- txhousing |> 
+  filter(city =="Dallas" & year == 2012 | year == 2013) 
+
+head(dallas_sub1)
 ```
 :::
 
 ::: {.callout-important icon="false" collapse="false" title="Problem 4 Answers"}
 ```{r}
 # Type your code and comments inside the code chunk
-
+dallas_sub <- txhousing |>
+  filter(city == "Dallas", between(year, 2012, 2013))
+ 
+dim(dallas_sub)
+head(dallas_sub)
 ```
 :::
 
