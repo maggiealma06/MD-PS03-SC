@@ -59,8 +59,13 @@ Examine `txhousing` in the data viewer. You can accomplish this two different wa
 ::: {.callout-important icon="false" collapse="false" title="Problem 1 Answers"}
 ```{r}
 # Type your code and comments inside the code chunk
-glimpse(txhousing) |>
-  tail()
+
+tail(txhousing)
+
+tail(txhousing, n = 1)
+
+last <- nrow(txhousing)
+txhousing$city[last]
 ```
 
 -   Wichita Falls is the last city listed in the data set.
@@ -245,6 +250,7 @@ Write a code chunk to remove the inventory variable. Save the results in a data 
 txhousing <- txhousing |>
   select(-"inventory")
 head(txhousing)
+names(txhousing)
 ```
 :::
 
@@ -252,8 +258,9 @@ head(txhousing)
 Make a data set called `dallas_sub` that includes data only from the city of Dallas in 2012 and 2013. Verify that the dimensions of `dallas_sub` are 24 by 8.  Show the first six rows of `dallas_sub`.  Explain why the following code does not give the requested answer:
 ```{r, eval = FALSE}
  dallas_sub1 <- txhousing |> 
-  filter(city =="Dallas" & year == 2012 | year == 2013) 
+  filter(city =="Dallas" & (year == 2012 | year == 2013)) 
 
+dim(dallas_sub1)
 head(dallas_sub1)
 ```
 :::
@@ -266,6 +273,12 @@ dallas_sub <- txhousing |>
  
 dim(dallas_sub)
 head(dallas_sub)
+
+
+ dallas_sub2 <- txhousing |> 
+  filter(city =="Dallas" & (year == 2012 | year == 2013))
+
+head(dallas_sub2)
 ```
 :::
 
